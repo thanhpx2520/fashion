@@ -1,0 +1,55 @@
+<!-- NAV -->
+<div class="col">
+  <div id="nav">
+    <ul class="nav nav-pills flex-column">
+      <li class="nav-item">
+        <a
+          class="nav-link <%= navLinkActive === 'Dashboard' ? 'active' : '' %>"
+          href="/admin/dashboard"
+        >
+          Dashboard
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link <%= navLinkActive === 'Categories' ? 'active' : '' %>"
+          href="/admin/categories"
+        >
+          Quản lý danh mục
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link <%= navLinkActive === 'Products' ? 'active' : '' %>"
+          href="/admin/products"
+        >
+          Quản lý sản phẩm
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link <%= navLinkActive === 'Users' ? 'active' : '' %>"
+          href="/admin/users"
+        >
+          Quản lý người dùng
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link <%= navLinkActive === 'Comments' ? 'active' : '' %>"
+          href="/admin/comments"
+        >
+          Quản lý bình luận
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link <%= navLinkActive === 'Sliders' ? 'active' : '' %>"
+          href="/admin/sliders"
+        >
+          Quản lý quảng cáo
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
