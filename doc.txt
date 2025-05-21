@@ -1,0 +1,7 @@
+chuột phải vào "server" của "fashion-main" chọn "Open in Integrated Terminal"
+lệnh chạy: npm run dev
+
+web bán hàng: http://localhost:8080/
+web admin: http://localhost:8080/admin/login
+- tài khoản: admin@gmail.com
+- mật khẩu: 123456
