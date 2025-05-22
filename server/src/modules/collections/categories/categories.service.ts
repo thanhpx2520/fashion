@@ -11,33 +11,16 @@ export class CategoriesService {
 
   // for clientService START
   async findAll(query: any) {
-    const limit = query.limit ? parseInt(query.limit) : 10;
-    const page = query.page ? parseInt(query.page) : 1;
-
-    const total = await this.categoryModel.countDocuments();
-    const totalPages = Math.ceil(total / limit);
-
     const docs = await this.categoryModel
-      .find()
+      .find({ active: 1 })
       .sort({ createdAt: -1 })
-      .skip((page - 1) * limit)
-      .limit(limit)
       .exec();
 
     return {
       docs,
-      pages: {
-        total,
-        limit,
-        totalPages,
-        currentPage: page,
-        hasNext: page < totalPages,
-        hasPrev: page > 1,
-        next: page < totalPages ? page + 1 : null,
-        prev: page > 1 ? page - 1 : null,
-      },
     };
   }
+
   // for clientService END
 
   // for adminService START

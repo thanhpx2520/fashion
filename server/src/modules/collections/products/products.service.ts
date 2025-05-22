@@ -7,11 +7,13 @@ import { InjectModel } from '@nestjs/mongoose';
 import { isValidObjectId, Model, Types } from 'mongoose';
 import { Product } from './schemas/product.schema';
 import { createFolderAndSaveFile, deleteImageFile } from 'src/helpers/util';
+import { Category } from '../categories/schemas/category.schema';
 
 @Injectable()
 export class ProductsService {
   constructor(
     @InjectModel(Product.name) private productModel: Model<Product>,
+    @InjectModel(Category.name) private categoryModel: Model<Category>,
   ) {}
 
   // for clientService START
@@ -59,8 +61,18 @@ export class ProductsService {
     });
     const totalPages = Math.ceil(total / limit);
 
+    const activeCategories = await this.categoryModel
+      .find({ active: 1 }, '_id')
+      .lean();
+
+    const activeCategoryIds = activeCategories.map((c) => c._id);
+
     const docs = await this.productModel
-      .find({ is_stock: true, ...dataFilter })
+      .find({
+        is_stock: true,
+        ...dataFilter,
+        category_id: { $in: activeCategoryIds },
+      })
       .sort({ createdAt: -1, ...dataSort })
       .skip((page - 1) * limit)
       .limit(limit)
